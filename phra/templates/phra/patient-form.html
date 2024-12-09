@@ -1,0 +1,14 @@
+<form action="{% url 'phra:patient_add_submit' %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>Add New patient</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <label>First Name: </label>
+    <input type="text" name="firstName" id="firstName" value="" /> <br />
+    <label>Last Name: </label>
+    <input type="text" name="lastName" id="lastName" value="" /> <br />
+    <label>Patient ID(From Patient System): </label>
+    <input type="text" name="patientId" id="patientId" value="" /> <br />
+</fieldset>
+<input type="submit" value="Add">
+</form>
