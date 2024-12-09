@@ -8,4 +8,4 @@
 6. install mysqlclient ```pip install mysqlclient ```
 
 ### Running Application
-python manage.py runserver
+```python manage.py runserver```
