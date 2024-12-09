@@ -24,7 +24,7 @@ class LabRecord(models.Model):
     patient = models.ForeignKey(CdPatient, on_delete=models.CASCADE)
     lab_record_id = models.CharField(unique=True, max_length=100)
     appointment_note = models.TextField(blank=True, null=True)
-    result_dt = models.DateTimeField(blank=True, null=True)
+    result_dt = models.DateTimeField(blank=True, null=True, auto_now_add=True)
 
     class Meta:
         managed = False
@@ -36,6 +36,7 @@ class LabResults(models.Model):
     spec_amount = models.CharField(max_length=100, blank=True, null=True)
     spec_description = models.CharField(max_length=50, blank=True, null=True)
     lab_record = models.ForeignKey(LabRecord, on_delete=models.CASCADE)
+    type = models.IntegerField()
 
     class Meta:
         managed = False

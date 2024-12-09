@@ -1,0 +1,16 @@
+<form action="{% url 'phra:records_add_submit' patient_id %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>Add Patient's Record</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <label>Lab Record Serial Number: </label>
+    <input type="text" name="labRecordId" id="labRecordId" value="" /> <br />
+    <label>Lab Results: </label>
+    <input type="text" name="labResult" id="labResult" value="" /> <br /> (hint: Result separate with - and multiple results can be added by comma separation. e.g. 100 - Cholesterol, 1.5MG - Creatine<br />
+    <label>Prescription: </label>
+    <input type="text" name="prescription" id="prescription" value="" /> <br /> (hint: Result separate with - and multiple results can be added by comma separation. e.g. 1 Tablet/Day - Vitamin-C, 1 Tablet/Day - Vitamin-D3 <br />
+    <label>Appointment Note: </label>
+    <textarea type="text" name="appointmentNote" id="pappointmentNote" value=""></textarea> <br />
+</fieldset>
+<input type="submit" value="Add">
+</form>

@@ -1,11 +1,12 @@
 <h1>Patient List</h1>
 
 {% if patient_data %}
-    <ul>
+<ul>
     {% for patient in patient_data %}
-        <li><a href="/records/{{ patient.patient_id }}">{{ patient.last_name }}, {{ patient.first_name }} - {{ patient.patient_system_id }}</a></li>
+    <li><a href="/records/{{ patient.patient_id }}">{{ patient.last_name }}, {{ patient.first_name }} -
+        {{ patient.patient_system_id }}</a></li>
     {% endfor %}
-    </ul>
-{% else %}
-    <p>No patient are available. Click <a href="patients/add">here</a> to add one</p>
+</ul>
 {% endif %}
+<hr/>
+<p><a href="patients/add">Add New Patient</a></p>

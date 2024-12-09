@@ -1,0 +1,23 @@
+<a href="/records/{{patient.patient_id}}"> back </a>
+
+<h1>{{ patient.last_name }}, {{ patient.first_name }} - {{ patient.patient_system_id }}'s Lab Record Detail</h1>
+<h3>Patient Name: {{ patient.last_name }}, {{ patient.first_name }}</h3>
+<h3>Patient Serial Number: {{ patient.patient_system_id }}</h3>
+
+<h3>Lab Result : </h3>
+<ul>
+    {% for result in lab_results %}
+    <li>{{result.spec_amount}} {{result.spec_description}}</li>
+    {% endfor %}
+</ul>
+<h3>Prescription : </h3>
+<ul>
+    {% for result in prescriptions %}
+    <li>{{result.spec_amount}} {{result.spec_description}}</li>
+    {% endfor %}
+</ul>
+<h3>Appointment Note : </h3>
+<pre>
+    {{lab_record.appointment_note}}
+</pre>
+<a href="/records/{{patient.patient_id}}"> back </a>
