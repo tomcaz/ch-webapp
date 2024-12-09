@@ -1,0 +1,32 @@
+CREATE TABLE `cd_patient` (
+  `patient_id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(30) DEFAULT NULL COMMENT 'first name or last name for ppl from other country.',
+  `last_name` varchar(30) DEFAULT NULL COMMENT 'first name or last name for ppl from other country.',
+  `patient_system_id` varchar(100) NOT NULL COMMENT 'e.g. SAP ID',
+  PRIMARY KEY (`patient_id`),
+  UNIQUE KEY `cd_patient_unique` (`patient_system_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `lab_record` (
+  `record_id` bigint NOT NULL AUTO_INCREMENT,
+  `patient_id` int NOT NULL,
+  `lab_record_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `appointment_note` text,
+  `result_dt` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`record_id`),
+  KEY `lab_record_cd_patient_FK` (`patient_id`),
+  CONSTRAINT `lab_record_cd_patient_FK` FOREIGN KEY (`patient_id`) REFERENCES `cd_patient` (`patient_id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `lab_results` (
+  `result_id` bigint NOT NULL AUTO_INCREMENT,
+  `spec_amount` varchar(100) DEFAULT NULL,
+  `spec_description` varchar(50) DEFAULT NULL,
+  `lab_record_id` bigint DEFAULT NULL,
+  `type` int DEFAULT '1',
+  PRIMARY KEY (`result_id`),
+  KEY `lab_results_lab_record_FK` (`lab_record_id`),
+  CONSTRAINT `lab_results_lab_record_FK` FOREIGN KEY (`lab_record_id`) REFERENCES `lab_record` (`record_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
