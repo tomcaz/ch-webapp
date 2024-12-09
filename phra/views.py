@@ -63,17 +63,18 @@ def records_add_submit(request, patient_id):
     try:
         lab_record = LabRecord(patient_id=patient_id, lab_record_id=lab_record_id, appointment_note=appointment_note)
         lab_record.save()
-    except KeyError:
+
+        record_id = lab_record.record_id
+        for result in lab_result.split(','):
+            save_lab_result(lab_record, result, 1)
+        for result in prescription.split(','):
+            save_lab_result(lab_record, result, 2)
+    except:
         context = {
-            'error_message' : KeyError,
+            'error_message' : 'Unable to save record',
             'patient_id': patient_id
         }
         return render(request, "phra/record-form.html", context)
-    record_id = lab_record.record_id
-    for result in lab_result.split(','):
-        save_lab_result(lab_record, result, 1)
-    for result in prescription.split(','):
-        save_lab_result(lab_record, result, 2)
     return HttpResponse(
         f"Lab Record Added. Click <a href='/records/{patient_id}'>here</a> to view.")
 
