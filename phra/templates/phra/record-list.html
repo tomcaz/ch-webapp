@@ -1,0 +1,10 @@
+<h1>{{ patient.last_name }}, {{ patient.first_name }} - {{ patient.patient_system_id }}'s Lab Records List</h1>
+
+{% if records %}
+    <ul>
+    {% for record in records %}
+        <li><a href="/records/{{ record.record_id }}/detail">{{ record.lab_record_id }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+<p><a href="/records/{{patient.patient_id}}/add">Add Patient Record</a></p>
